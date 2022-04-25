@@ -6,10 +6,6 @@ const app = express();
 //middleware
 app.use(express.json());
 
-app.use("/api", (req, res, next) => {
-  res.send("Hello World");
-});
-
 //mongoose connection
 const port = process.env.PORT;
 mongoose
@@ -21,5 +17,5 @@ mongoose
   .catch((err) => console.log(err));
 
 app.listen(port, () => {
-  console.log("Server is running on port 3000");
+  console.log("Server is running on port 5000");
 });
