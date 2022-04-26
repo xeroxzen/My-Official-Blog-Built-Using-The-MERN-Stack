@@ -1,15 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/user-routes";
+import postRouter from "./routes/blog-routes";
 
 const app = express();
 
 //middleware
 app.use(express.json());
 
-//import router
-app.use(router);
+//import routers
 app.use("/api/user", router);
+app.use("/api/blog", postRouter);
 
 const CONNECTION_URL =
   process.env.ATLAS_URI ||
