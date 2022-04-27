@@ -2,10 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/user-routes";
 import postRouter from "./routes/blog-routes";
+import cors from "cors";
 
 const app = express();
 
 //middleware
+app.use(cors());
 app.use(express.json());
 
 //import routers
