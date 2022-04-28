@@ -1,0 +1,60 @@
+{
+    "users": [
+        {
+            "_id": "6266df697445b1f4d1e9d508",
+            "name": "Google Jr",
+            "email": "googlejr@gmail.com",
+            "password": "$2a$10$EkuekKbqvTJYb4nEnQabp.qJu3zsrXFaBVjrt.cEP2I0aOkfTOz3e",
+            "__v": 3,
+            "posts": [
+                "626739023e7bce5b8ca48827"
+            ]
+        },
+        {
+            "_id": "6266e0137445b1f4d1e9d50c",
+            "name": "Andile",
+            "email": "andilembele01@gmail.com",
+            "password": "$2a$10$OHAiwW2EIgma7X0/ipm6duxMAiIzBOEYppKJFZoatNe.Hx9g2VIgy",
+            "__v": 3,
+            "posts": [
+                "62672939c8daa21a61ab03a3",
+                "6267308b0afdbbf0d844eb09",
+                "626738a03e7bce5b8ca48822"
+            ]
+        },
+        {
+            "posts": [],
+            "_id": "6266e03d7445b1f4d1e9d50f",
+            "name": "Jaden",
+            "email": "jaden@gmail.com",
+            "password": "$2a$10$o1zqPPmMqtOiPSVTbwWR3OU2d4rh64aU5Jj/Lb.YCOPkB8WmBdD.q",
+            "__v": 0
+        },
+        {
+            "_id": "6267144ba54160cfe64baf19",
+            "name": "xeroxzen",
+            "email": "xeroxzen@gmail.com",
+            "password": "$2a$10$KS4QTxmyG5hlQQdfEJ4go.loOc2vxt0n3LxY2nIVR0AKalehx9lMm",
+            "posts": [
+                "62672fee0afdbbf0d844eb03"
+            ],
+            "__v": 1
+        },
+        {
+            "_id": "6269203d523d360943da424c",
+            "name": "Zurander",
+            "email": "zurandermeiss@gmail.com",
+            "password": "$2a$10$UPjrCHe0iYBHMIbaHmKGhu0oIlr8iaw8/1GrMHeppev4.vXS5Rhc6",
+            "posts": [],
+            "__v": 0
+        },
+        {
+            "_id": "6269242b523d360943da4252",
+            "name": "Messi",
+            "email": "messi@gmail.com",
+            "password": "$2a$10$I3hvO1FpIvm2KhsRVLDrNuCIn5b/onYsam6udoa0Me6ruyH4DXlT2",
+            "posts": [],
+            "__v": 0
+        }
+    ]
+}

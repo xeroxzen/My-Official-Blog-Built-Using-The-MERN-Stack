@@ -1,12 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store";
+import { useNavigate } from "react-router-dom";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
 const Auth = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
     password: "",
   });
+
+  const sendRequest = async (type = "login") => {
+    const res = await axios
+      .post(`http://localhost:5000/api/user/${type}`, {
+        name: inputs.name,
+        email: inputs.email,
+        password: inputs.password,
+      })
+      .catch((err) => console.log(err));
+
+    const data = await res.data;
+    console.log(data);
+    return data;
+  };
 
   const [isSignUp, setIsSignUp] = useState(false);
   const handleChange = (e) => {
@@ -19,6 +39,17 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    if (isSignUp) {
+      sendRequest("signup")
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/posts"))
+        .then((data) => console.log(data));
+    } else {
+      sendRequest()
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/posts"))
+        .then((data) => console.log(data));
+    }
   };
 
   return (
@@ -55,6 +86,7 @@ const Auth = () => {
               value={inputs.name}
               placeholder="Username"
               margin="normal"
+              autoComplete="new-password"
             />
           )}
           <TextField
@@ -64,6 +96,7 @@ const Auth = () => {
             type={"email"}
             placeholder="Email"
             margin="normal"
+            autoComplete="new-password"
           />
           <TextField
             name="password"
@@ -72,6 +105,7 @@ const Auth = () => {
             type={"password"}
             placeholder="Password"
             margin="normal"
+            autoComplete="new-password"
           />
           <Button
             type="submit"
@@ -79,7 +113,7 @@ const Auth = () => {
             sx={{ marginTop: 2 }}
             color="success"
           >
-            Submit
+            {isSignUp ? "Sign Up" : "Login"}
           </Button>
           <Button onClick={() => setIsSignUp(!isSignUp)} color="warning">
             {isSignUp ? "Login" : "Register"} Instead
