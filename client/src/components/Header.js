@@ -9,9 +9,11 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../store";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [value, setValue] = useState();
   return (
@@ -62,6 +64,7 @@ const Header = () => {
           )}
           {isAuthenticated && (
             <Button
+              onClick={() => dispatch(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
               variant="outlined"
