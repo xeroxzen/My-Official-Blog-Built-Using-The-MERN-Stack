@@ -41,11 +41,13 @@ const Auth = () => {
     console.log(inputs);
     if (isSignUp) {
       sendRequest("signup")
+        .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => dispatch(authActions.login()))
         .then(() => navigate("/posts"))
         .then((data) => console.log(data));
     } else {
       sendRequest()
+        .then((data) => localStorage.setItem("userId", data.user._id))
         .then(() => dispatch(authActions.login()))
         .then(() => navigate("/posts"))
         .then((data) => console.log(data));

@@ -23,7 +23,7 @@ function App() {
           <Route path="/posts" element={<Posts />} />
           <Route path="/my-posts" element={<UserPosts />} />
           <Route path="/my-post/:id" element={<Post />} />
-          <Route path="/post/create" element={<CreatePost />} />
+          <Route path="/post/create-post" element={<CreatePost />} />
         </Routes>
       </main>
     </React.Fragment>

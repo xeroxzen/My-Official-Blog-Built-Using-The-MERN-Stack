@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 export const getAllPosts = async (req, res, next) => {
   let posts;
   try {
-    posts = await Blog.find();
+    posts = await Blog.find().populate("user");
   } catch (err) {
     return console.error(err);
   }
