@@ -1,17 +1,47 @@
 import React, { useState } from "react";
-import { InputLabel, Box, Typography, TextField } from "@mui/material";
+import axios from "axios";
+import { Box, Typography, TextField, Button } from "@mui/material";
 
-const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
+// const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreatePost = () => {
   const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
+    title: "",
+    description: "",
+    content: "",
+    image: "",
   });
+
+  const sendRequest = async () => {
+    const res = await axios
+      .post("http://localhost:5000/api/blog/create", {
+        title: inputs.title,
+        description: inputs.description,
+        content: inputs.content,
+        image: inputs.image,
+        user: localStorage.getItem("userId"),
+      })
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
+
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    sendRequest().then((data) => console.log(data));
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           border={3}
           borderColor="linear-gradient(90deg, rgba(33,127,193,1) 0%, rgba(83,10,89,1) 100%);"
@@ -33,14 +63,61 @@ const CreatePost = () => {
           >
             Create Post
           </Typography>
-          <InputLabel sx={labelStyles}>Title</InputLabel>
-          <TextField margin="auto" variant="outlined" />
-          <InputLabel sx={labelStyles}>Description</InputLabel>
-          <TextField margin="auto" variant="outlined" />
-          <InputLabel sx={labelStyles}>Image</InputLabel>
-          <TextField margin="auto" variant="outlined" />
-          <InputLabel sx={labelStyles}>Content</InputLabel>
-          <TextField margin="auto" variant="outlined" />
+
+          <TextField
+            sx={{ mt: 3 }}
+            margin="auto"
+            name="title"
+            onChange={handleChange}
+            value={inputs.title}
+            label="Title"
+            color="secondary"
+            focused
+          />
+          <TextField
+            sx={{ mt: 3 }}
+            margin="auto"
+            name="description"
+            onChange={handleChange}
+            value={inputs.description}
+            label="Description"
+            // variant="filled"
+            color="success"
+            focused
+          />
+
+          <TextField
+            sx={{ mt: 3 }}
+            margin="auto"
+            name="image"
+            onChange={handleChange}
+            value={inputs.image}
+            label="Image URL"
+            // variant="filled"
+            color="success"
+            focused
+          />
+
+          <TextField
+            sx={{ mt: 3 }}
+            margin="auto"
+            name="content"
+            onChange={handleChange}
+            value={inputs.content}
+            label="Content"
+            // variant="standard"
+            color="warning"
+            focused
+          />
+
+          <Button
+            sx={{ mt: 2, borderRadius: 4 }}
+            variant="contained"
+            color="warning"
+            type="submit"
+          >
+            Submit
+          </Button>
         </Box>
       </form>
     </div>
