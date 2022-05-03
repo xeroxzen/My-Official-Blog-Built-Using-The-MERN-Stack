@@ -5,6 +5,7 @@ import { Box, Typography, TextField, Button } from "@mui/material";
 // const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 
 const CreatePost = () => {
+  const [post, setPost] = useState(); // eslint-disable-next-line no-unused-vars
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
@@ -36,7 +37,9 @@ const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
-    sendRequest().then((data) => console.log(data));
+    sendRequest().then((data) => setPost(data.post));
+    // sendRequest().then((data) => console.log(data.post));
+    console.log(post);
   };
 
   return (

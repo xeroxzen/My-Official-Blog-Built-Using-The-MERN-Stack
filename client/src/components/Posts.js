@@ -16,12 +16,13 @@ const Posts = () => {
     sendRequest().then((data) => setPosts(data.posts));
   }, []);
   console.log(posts);
-  // { items.map(x => <li key={ Math.random().toString(36).substr(2, 9) }>{x}</li>}
   return (
     <div>
       {posts &&
         posts.map((post, index) => (
           <PostsCard
+            id={post._id}
+            isUser={localStorage.getItem("userId") === post.user._id}
             key={index}
             title={post.title}
             content={post.content}

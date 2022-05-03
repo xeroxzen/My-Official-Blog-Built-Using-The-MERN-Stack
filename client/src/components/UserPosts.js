@@ -3,7 +3,7 @@ import axios from "axios";
 import PostsCard from "./PostsCard";
 
 const UserPosts = () => {
-  const [posts, setPosts] = useState();
+  const [user, setUser] = useState();
   const id = localStorage.getItem("userId");
   const sendRequest = async () => {
     const res = await axios
@@ -16,21 +16,23 @@ const UserPosts = () => {
   };
 
   useEffect(() => {
-    sendRequest().then((data) => setPosts(data.posts.posts));
+    sendRequest().then((data) => setUser(data.user));
   }, []);
-  console.log(posts);
+  console.log(user);
 
   return (
     <div>
-      {posts &&
-        posts.map((post, index) => (
+      {user &&
+        user.posts &&
+        user.posts.map((post, index) => (
           <PostsCard
             key={index}
+            isUser={true}
             title={post.title}
             content={post.content}
             description={post.description}
             image={post.image}
-            author={post.user.name}
+            author={user.name}
             publishedAt={post.createdAt}
           />
         ))}

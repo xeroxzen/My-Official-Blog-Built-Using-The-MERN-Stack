@@ -6,7 +6,13 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  Box,
+  IconButton,
 } from "@mui/material";
+
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({
   title,
@@ -15,7 +21,20 @@ const PostsCard = ({
   content,
   author,
   publishedAt,
+  isUser,
+  id,
 }) => {
+  const navigate = useNavigate();
+  const handleEdit = () => {
+    navigate(`/my-post/${id}`);
+  };
+
+  const handleDelete = () => {
+    console.log("delete");
+  };
+
+
+  console.log(title, isUser);
   return (
     <div>
       {" "}
@@ -31,10 +50,20 @@ const PostsCard = ({
           },
         }}
       >
+        {isUser && (
+          <Box display="flex">
+            <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
+              <ModeEditOutlineIcon />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteForeverIcon />
+            </IconButton>
+          </Box>
+        )}
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              {/* {author.charAt(0).toUpperCase()} */}
+              {author.charAt(0).toUpperCase()}
             </Avatar>
           }
           title={title}
@@ -48,7 +77,7 @@ const PostsCard = ({
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {content}
+            <b>{author}:</b> {content}
           </Typography>
         </CardContent>
       </Card>
