@@ -15,6 +15,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({
+  id,
   title,
   description,
   image,
@@ -22,7 +23,6 @@ const PostsCard = ({
   author,
   publishedAt,
   isUser,
-  id,
 }) => {
   const navigate = useNavigate();
   const handleEdit = () => {
@@ -32,7 +32,6 @@ const PostsCard = ({
   const handleDelete = () => {
     console.log("delete");
   };
-
 
   console.log(title, isUser);
   return (
