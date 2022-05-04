@@ -12,12 +12,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store";
 import { useStyles } from "./utils";
+// import { styled } from "@mui/material/styles";
 
 const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [value, setValue] = useState(0);
+  // const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -27,7 +30,7 @@ const Header = () => {
       position="sticky"
       sx={{
         background:
-          "linear-gradient(90deg, rgba(33,127,193,1) 0%, rgba(83,10,89,1) 100%);",
+          "background: radial-gradient(circle, rgba(0,194,255,1) 0%, rgba(215,8,49,1) 100%);",
       }}
     >
       <Toolbar>
@@ -65,7 +68,7 @@ const Header = () => {
               <Button
                 LinkComponent={Link}
                 to="/auth"
-                variant="outlined"
+                variant="contained"
                 sx={{ margin: 1, borderRadius: 10 }}
                 color="warning"
               >
@@ -74,7 +77,7 @@ const Header = () => {
               <Button
                 LinkComponent={Link}
                 to="/auth"
-                variant="outlined"
+                variant="contained"
                 sx={{ margin: 1, borderRadius: 10 }}
                 color="warning"
               >
@@ -87,7 +90,7 @@ const Header = () => {
               onClick={() => dispatch(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
-              variant="outlined"
+              variant="contained"
               sx={{ margin: 1, borderRadius: 10 }}
               color="warning"
             >

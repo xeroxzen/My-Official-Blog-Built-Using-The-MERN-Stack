@@ -55,6 +55,8 @@ const PostsCard = ({
         sx={{
           width: "40%",
           margin: "auto",
+          background:
+            "linear-gradient(0deg, rgba(208,208,208,1) 0%, rgba(0,124,153,1) 100%);",
           mt: 2,
           padding: 2,
           boxShadow: "5px 5px 10px #ccc",
@@ -66,10 +68,10 @@ const PostsCard = ({
         {isUser && (
           <Box display="flex">
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              <ModeEditOutlineIcon color="primary" />
+              <ModeEditOutlineIcon color="warning" />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteForeverIcon color="warning" />
+              <DeleteForeverIcon color="error" />
             </IconButton>
           </Box>
         )}
@@ -79,7 +81,7 @@ const PostsCard = ({
             <Avatar
               className={classes.font}
               sx={{ bgcolor: "red" }}
-              aria-label="recipe"
+              aria-label="title"
             >
               {author ? author.charAt(0).toUpperCase() : ""}
             </Avatar>
