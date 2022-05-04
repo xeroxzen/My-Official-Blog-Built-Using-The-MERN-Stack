@@ -76,7 +76,6 @@ const PostsCard = ({
           </Box>
         )}
         <CardHeader
-          className={classes.font}
           avatar={
             <Avatar
               className={classes.font}
