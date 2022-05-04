@@ -3,3 +3,48 @@
 * {
   margin: 0;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Set media queries for small screens */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1.5rem;
+  }
+  Typography {
+    font-size: 1.6rem;
+  }
+}
+
+/* Bigger screens */
+@media screen and (min-width: 600px) {
+  .container {
+    width: 600px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 2rem;
+  }
+  Typography {
+    font-size: 2.2rem;
+  }
+}
