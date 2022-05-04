@@ -7,7 +7,7 @@ const Post = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState();
   const id = useParams().id;
-  console.log(id);
+  // console.log(id);
 
   const [inputs, setInputs] = useState({});
   const handleChange = (e) => {
@@ -46,6 +46,7 @@ const Post = () => {
         image: inputs.image,
       })
       .catch((err) => console.log(err));
+
     const data = await res.data;
     return data;
   };
@@ -63,85 +64,87 @@ const Post = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <Box
-          border={3}
-          borderColor="linear-gradient(90deg, rgba(33,127,193,1) 0%, rgba(83,10,89,1) 100%);"
-          borderRadius={10}
-          boxShadow="10px 10px 20px #ccc"
-          padding={3}
-          margin={"auto"}
-          marginTop={3}
-          display="flex"
-          flexDirection={"column"}
-          width={"80%"}
-        >
-          <Typography
-            fontWeight={"bold"}
+      {inputs && (
+        <form onSubmit={handleSubmit}>
+          <Box
+            border={3}
+            borderColor="linear-gradient(90deg, rgba(33,127,193,1) 0%, rgba(83,10,89,1) 100%);"
+            borderRadius={10}
+            boxShadow="10px 10px 20px #ccc"
             padding={3}
-            color="grey"
-            variant="h3"
-            textAlign="center"
+            margin="normal"
+            marginTop={3}
+            display="flex"
+            flexDirection={"column"}
+            width={"80%"}
           >
-            Create Post
-          </Typography>
+            <Typography
+              fontWeight={"bold"}
+              padding={3}
+              color="grey"
+              variant="h3"
+              textAlign="center"
+            >
+              Create Post
+            </Typography>
 
-          <TextField
-            sx={{ mt: 3 }}
-            margin="auto"
-            name="title"
-            onChange={handleChange}
-            value={inputs.title}
-            label="Title"
-            color="secondary"
-            focused
-          />
-          <TextField
-            sx={{ mt: 3 }}
-            margin="auto"
-            name="description"
-            onChange={handleChange}
-            value={inputs.description}
-            label="Description"
-            // variant="filled"
-            color="success"
-            focused
-          />
+            <TextField
+              sx={{ mt: 3 }}
+              margin="normal"
+              name="title"
+              onChange={handleChange}
+              value={inputs.title}
+              label="Title"
+              color="secondary"
+              focused
+            />
+            <TextField
+              sx={{ mt: 3 }}
+              margin="normal"
+              name="description"
+              onChange={handleChange}
+              value={inputs.description}
+              label="Description"
+              // variant="filled"
+              color="success"
+              focused
+            />
 
-          <TextField
-            sx={{ mt: 3 }}
-            margin="auto"
-            name="image"
-            onChange={handleChange}
-            value={inputs.image}
-            label="Image URL"
-            // variant="filled"
-            color="success"
-            focused
-          />
+            <TextField
+              sx={{ mt: 3 }}
+              margin="normal"
+              name="image"
+              onChange={handleChange}
+              value={inputs.image}
+              label="Image URL"
+              // variant="filled"
+              color="success"
+              focused
+            />
 
-          <TextField
-            sx={{ mt: 3 }}
-            margin="auto"
-            name="content"
-            onChange={handleChange}
-            value={inputs.content}
-            label="Content"
-            // variant="standard"
-            color="warning"
-            focused
-          />
+            <TextField
+              sx={{ mt: 3 }}
+              margin="normal"
+              name="content"
+              onChange={handleChange}
+              value={inputs.content}
+              label="Content"
+              // variant="standard"
+              color="warning"
+              focused
+            />
 
-          <Button
-            sx={{ mt: 2, borderRadius: 4 }}
-            variant="contained"
-            color="warning"
-            type="submit"
-          >
-            Submit
-          </Button>
-        </Box>
-      </form>
+            <Button
+              sx={{ mt: 2, borderRadius: 4 }}
+              variant="contained"
+              color="warning"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </Box>
+        </form>
+      )}
     </div>
   );
 };

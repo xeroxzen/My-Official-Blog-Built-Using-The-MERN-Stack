@@ -18,6 +18,7 @@ const UserPosts = () => {
   useEffect(() => {
     sendRequest().then((data) => setUser(data.user));
   }, []);
+  console.log(user);
 
   return (
     <div>

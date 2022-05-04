@@ -11,11 +11,17 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../store";
+import { useStyles } from "./utils";
 
 const Header = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <AppBar
       position="sticky"
@@ -25,17 +31,30 @@ const Header = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h4">Welcome to my Blog</Typography>
+        <Typography className={classes.font} variant="h4">
+          Blog App
+        </Typography>
         {isAuthenticated && (
           <Box display="flex" marginLeft="auto" marginRight="auto">
-            <Tabs
-              textColor="inherit"
-              value={value}
-              onChange={(e, val) => setValue(val)}
-            >
-              <Tab LinkComponent={Link} to="/posts" label="All Posts" />
-              <Tab LinkComponent={Link} to="/my-posts" label="Your Posts" />
-              <Tab LinkComponent={Link} to="/post/create" label="Create Post" />
+            <Tabs textColor="inherit" value={value} onChange={handleChange}>
+              <Tab
+                className={classes.font}
+                LinkComponent={Link}
+                to="/posts"
+                label="All Posts"
+              />
+              <Tab
+                className={classes.font}
+                LinkComponent={Link}
+                to="/my-posts"
+                label="Your Posts"
+              />
+              <Tab
+                className={classes.font}
+                LinkComponent={Link}
+                to="/post/create"
+                label="Create Post"
+              />
             </Tabs>
           </Box>
         )}

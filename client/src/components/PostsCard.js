@@ -14,6 +14,7 @@ import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useStyles } from "./utils";
 
 const PostsCard = ({
   id,
@@ -25,6 +26,7 @@ const PostsCard = ({
   publishedAt,
   isUser,
 }) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const handleEdit = () => {
     navigate(`/my-post/${id}`);
@@ -41,6 +43,7 @@ const PostsCard = ({
     deleteRequest()
       .then(() => navigate("/"))
       .then(() => console.log("Post successfully deleted"))
+      .then(() => navigate("/"))
       .then(() => navigate("/posts"));
   };
 
@@ -63,16 +66,21 @@ const PostsCard = ({
         {isUser && (
           <Box display="flex">
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              <ModeEditOutlineIcon />
+              <ModeEditOutlineIcon color="primary" />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteForeverIcon />
+              <DeleteForeverIcon color="warning" />
             </IconButton>
           </Box>
         )}
         <CardHeader
+          className={classes.font}
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
+            <Avatar
+              className={classes.font}
+              sx={{ bgcolor: "red" }}
+              aria-label="recipe"
+            >
               {author ? author.charAt(0).toUpperCase() : ""}
             </Avatar>
           }
@@ -80,13 +88,20 @@ const PostsCard = ({
           subheader={publishedAt}
         />
         <CardMedia
+          className={classes.font}
           component="img"
           height="194"
           image={image}
           alt={description}
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <hr />
+          <br />
+          <Typography
+            className={classes.font}
+            variant="body2"
+            color="text.secondary"
+          >
             <b>{author}:</b> {content}
           </Typography>
         </CardContent>

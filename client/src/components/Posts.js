@@ -15,6 +15,8 @@ const Posts = () => {
   useEffect(() => {
     sendRequest().then((data) => setPosts(data.posts));
   }, []);
+  console.log(posts);
+
   return (
     <div>
       {posts &&
