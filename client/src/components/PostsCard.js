@@ -13,8 +13,11 @@ import {
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useStyles } from "./utils";
 
 const PostsCard = ({
+  id,
   title,
   description,
   image,
@@ -22,19 +25,29 @@ const PostsCard = ({
   author,
   publishedAt,
   isUser,
-  id,
 }) => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const handleEdit = () => {
     navigate(`/my-post/${id}`);
   };
 
+  const deleteRequest = async () => {
+    const res = await axios
+      .delete(`http://localhost:5000/api/blog/${id}`)
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
   const handleDelete = () => {
-    console.log("delete");
+    deleteRequest()
+      .then(() => navigate("/"))
+      .then(() => console.log("Post successfully deleted"))
+      .then(() => navigate("/"))
+      .then(() => navigate("/posts"));
   };
 
-
-  console.log(title, isUser);
+  // console.log(title, isUser);
   return (
     <div>
       {" "}
@@ -53,30 +66,42 @@ const PostsCard = ({
         {isUser && (
           <Box display="flex">
             <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
-              <ModeEditOutlineIcon />
+              <ModeEditOutlineIcon color="primary" />
             </IconButton>
             <IconButton onClick={handleDelete}>
-              <DeleteForeverIcon />
+              <DeleteForeverIcon color="warning" />
             </IconButton>
           </Box>
         )}
         <CardHeader
+          className={classes.font}
           avatar={
-            <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              {author.charAt(0).toUpperCase()}
+            <Avatar
+              className={classes.font}
+              sx={{ bgcolor: "red" }}
+              aria-label="recipe"
+            >
+              {author ? author.charAt(0).toUpperCase() : ""}
             </Avatar>
           }
           title={title}
           subheader={publishedAt}
         />
         <CardMedia
+          className={classes.font}
           component="img"
           height="194"
           image={image}
           alt={description}
         />
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <hr />
+          <br />
+          <Typography
+            className={classes.font}
+            variant="body2"
+            color="text.secondary"
+          >
             <b>{author}:</b> {content}
           </Typography>
         </CardContent>

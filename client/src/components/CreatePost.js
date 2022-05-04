@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Box, Typography, TextField, Button } from "@mui/material";
-
-// const labelStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
+import { useNavigate } from "react-router-dom";
+import { useStyles } from "./utils";
 
 const CreatePost = () => {
-  const [post, setPost] = useState(); // eslint-disable-next-line no-unused-vars
+  const classes = useStyles();
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
-    content: "",
     image: "",
+    content: "",
   });
 
   const sendRequest = async () => {
@@ -37,9 +38,10 @@ const CreatePost = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
-    sendRequest().then((data) => setPost(data.post));
-    // sendRequest().then((data) => console.log(data.post));
-    console.log(post);
+    sendRequest()
+      .then((data) => console.log(data))
+      .then(() => console.log("Post created successfully"))
+      .then(() => navigate("/my-posts"));
   };
 
   return (
@@ -51,13 +53,14 @@ const CreatePost = () => {
           borderRadius={10}
           boxShadow="10px 10px 20px #ccc"
           padding={3}
-          margin={"auto"}
+          margin="auto"
           marginTop={3}
           display="flex"
           flexDirection={"column"}
           width={"80%"}
         >
           <Typography
+            className={classes.font}
             fontWeight={"bold"}
             padding={3}
             color="grey"
@@ -68,8 +71,9 @@ const CreatePost = () => {
           </Typography>
 
           <TextField
+            className={classes.font}
             sx={{ mt: 3 }}
-            margin="auto"
+            margin="normal"
             name="title"
             onChange={handleChange}
             value={inputs.title}
@@ -78,8 +82,9 @@ const CreatePost = () => {
             focused
           />
           <TextField
+            className={classes.font}
             sx={{ mt: 3 }}
-            margin="auto"
+            margin="normal"
             name="description"
             onChange={handleChange}
             value={inputs.description}
@@ -90,8 +95,9 @@ const CreatePost = () => {
           />
 
           <TextField
+            className={classes.font}
             sx={{ mt: 3 }}
-            margin="auto"
+            margin="normal"
             name="image"
             onChange={handleChange}
             value={inputs.image}
@@ -102,8 +108,9 @@ const CreatePost = () => {
           />
 
           <TextField
+            className={classes.font}
             sx={{ mt: 3 }}
-            margin="auto"
+            margin="normal"
             name="content"
             onChange={handleChange}
             value={inputs.content}
@@ -116,7 +123,7 @@ const CreatePost = () => {
           <Button
             sx={{ mt: 2, borderRadius: 4 }}
             variant="contained"
-            color="warning"
+            color="success"
             type="submit"
           >
             Submit

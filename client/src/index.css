@@ -1,17 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
 * {
   margin: 0;
-}
-
-/* body {
-  background: rgb(0, 40, 69);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 40, 69, 1) 0%,
-    rgba(0, 43, 77, 1) 100%
-  );
-  color: #fff;
-} */
-
-body {
-  background: "#d0d0d0";
 }
