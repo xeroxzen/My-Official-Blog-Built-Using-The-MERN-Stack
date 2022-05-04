@@ -16,9 +16,8 @@ app.use(express.json());
 app.use("/api/user", router);
 app.use("/api/blog", postRouter);
 
-const CONNECTION_URL = process.env.ATLAS_URI; //||
-//("mongodb+srv://admin:JBh1jbs6QQx7HIIR@myblog.dbi3o.mongodb.net/blog?retryWrites=true&w=majority");
-const PORT = process.env.PORT || 5000;
+const CONNECTION_URL = process.env.DATABASE;
+const PORT = process.env.PORT;
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
