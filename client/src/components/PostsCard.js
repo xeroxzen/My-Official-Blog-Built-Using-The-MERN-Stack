@@ -13,6 +13,7 @@ import {
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PostsCard = ({
   id,
@@ -29,11 +30,21 @@ const PostsCard = ({
     navigate(`/my-post/${id}`);
   };
 
+  const deleteRequest = async () => {
+    const res = await axios
+      .delete(`http://localhost:5000/api/blog/${id}`)
+      .catch((err) => console.log(err));
+    const data = await res.data;
+    return data;
+  };
   const handleDelete = () => {
-    console.log("delete");
+    deleteRequest()
+      .then(() => navigate("/"))
+      .then(() => console.log("Post successfully deleted"))
+      .then(() => navigate("/posts"));
   };
 
-  console.log(title, isUser);
+  // console.log(title, isUser);
   return (
     <div>
       {" "}
@@ -62,7 +73,7 @@ const PostsCard = ({
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">
-              {author.charAt(0).toUpperCase()}
+              {author ? author.charAt(0).toUpperCase() : ""}
             </Avatar>
           }
           title={title}

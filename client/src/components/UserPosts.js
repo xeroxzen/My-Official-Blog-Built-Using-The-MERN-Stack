@@ -18,14 +18,15 @@ const UserPosts = () => {
   useEffect(() => {
     sendRequest().then((data) => setUser(data.user));
   }, []);
-  console.log(user);
 
   return (
     <div>
+      {" "}
       {user &&
         user.posts &&
         user.posts.map((post, index) => (
           <PostsCard
+            id={post._id}
             key={index}
             isUser={true}
             title={post.title}
