@@ -22,10 +22,12 @@ const UserPosts = () => {
 
   return (
     <div>
+      {" "}
       {user &&
         user.posts &&
         user.posts.map((post, index) => (
           <PostsCard
+            id={post._id}
             key={index}
             isUser={true}
             title={post.title}

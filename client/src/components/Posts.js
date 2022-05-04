@@ -16,6 +16,7 @@ const Posts = () => {
     sendRequest().then((data) => setPosts(data.posts));
   }, []);
   console.log(posts);
+
   return (
     <div>
       {posts &&

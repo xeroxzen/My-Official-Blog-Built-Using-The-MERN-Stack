@@ -43,7 +43,7 @@ export const createPost = async (req, res, next) => {
 };
 
 export const updatePost = async (req, res, next) => {
-  const { title, content, description, image, user } = req.body;
+  const { title, content, description, image } = req.body;
   let updatedPost;
   try {
     updatedPost = await Blog.findByIdAndUpdate(req.params.id, {
@@ -51,7 +51,6 @@ export const updatePost = async (req, res, next) => {
       content,
       description,
       image,
-      user,
     });
   } catch (err) {
     return console.error(err);

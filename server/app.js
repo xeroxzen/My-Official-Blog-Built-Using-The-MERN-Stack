@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import router from "./routes/user-routes";
 import postRouter from "./routes/blog-routes";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
