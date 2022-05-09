@@ -86,7 +86,12 @@ const PostsCard = ({
             </Avatar>
           }
           title={title}
-          subheader={publishedAt}
+          // Output the date in human readable format
+          subheader={new Date(publishedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
         />
         <CardMedia
           className={classes.font}
