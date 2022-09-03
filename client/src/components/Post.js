@@ -7,7 +7,6 @@ const Post = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState();
   const id = useParams().id;
-  // console.log(id);
 
   const [inputs, setInputs] = useState({});
   const handleChange = (e) => {
